@@ -1,0 +1,39 @@
+<div class="sidebar__playlist">
+    <h4>Your Playlists</h4>
+    <div class="d-flex flex-column" style="gap: 19px;" id="yourPlaylists">
+        <div class="playlist">
+            <a href="/playlist/liked-songs">
+                <div class="play__box">
+                    <img src="/image/icon/heart.png" alt="icon">
+                </div>
+                <div class="paly__content">
+                    <h5>Liked Songs</h5>
+                    <p><%= user.likedSongs.length %> Songs</p>
+                </div>
+            </a>
+        </div>
+        <% for(let i=0; i < userPlaylists.length; i++) { %>
+        <div class="playlist">
+            <a href="/playlist/<%= userPlaylists[i]._id %>">
+                <div class="play__box">
+                    <img class="w-100" src="/image/section/playlist1.png" alt="icon">
+                </div>
+                <div class="paly__content">
+                    <h5><%= userPlaylists[i].title %></h5>
+                    <p><%= userPlaylists[i].songs.length %> Songs</p>
+                </div>
+            </a>
+        </div>
+        <% } %>
+        <div class="playlist" data-toggle="modal" data-target="#createPlaylistModal">
+            <a href="#!">
+                <div class="play__box">
+                    <img src="/image/icon/plus.png" alt="icon">
+                </div>
+                <div class="paly__content">
+                    <h5>Create Playlist</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

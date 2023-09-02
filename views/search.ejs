@@ -1,0 +1,269 @@
+<%- include('partials/head.ejs') %>
+
+    <body>
+
+        <!-- page section start here -->
+        <section class="page__section search__page">
+            <div class="page__inner d-flex">
+                <div class="sidebar d-flex flex-column" id="sidebar">
+                    <div class="navi w-100">
+                        <ul class="w-100">
+                            <li><a href="home"><img src="image/icon/home3.png" alt="icon">
+                                    Home</a></li>
+                            <li><a href="" class="bottom_nav_active"><img src="image/icon/searchActive.png"
+                                        alt="icon">Search</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <%- include('partials/you.ejs') %>
+                        <%- include('partials/yourPlaylists.ejs') %>
+                            <%- include('partials/yourArtists.ejs') %>
+                </div>
+
+                <div class="bm__boxes w-100">
+                    <div class="search__box">
+                        <form class="d-flex">
+                            <img src="image/icon/searchActive.png" alt="icon">
+                            <input type="text" id="searchInput" placeholder="Search Song / Album / Playlist">
+                        </form>
+                        <div class="search__opt">
+                            <div>
+                                <div class="search__nav">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <button class="nav-link active" id="nav-song-tab" data-type="track"
+                                                data-bs-toggle="tab" data-bs-target="#nav-song" type="button" role="tab"
+                                                aria-controls="nav-song" aria-selected="true">Song</button>
+                                            <button class="nav-link" id="nav-album-tab" data-type="album"
+                                                data-bs-toggle="tab" data-bs-target="#nav-album" type="button"
+                                                role="tab" aria-controls="nav-album"
+                                                aria-selected="false">Album</button>
+                                            <button class="nav-link" id="nav-artist-tab" data-type="artist"
+                                                data-bs-toggle="tab" data-bs-target="#nav-artist" type="button"
+                                                role="tab" aria-controls="nav-artist"
+                                                aria-selected="false">Artists</button>
+                                            <button class="nav-link" id="nav-playlist-tab" data-type="playlist"
+                                                data-bs-toggle="tab" data-bs-target="#nav-playlist" type="button"
+                                                role="tab" aria-controls="nav-playlist"
+                                                aria-selected="false">Playlist</button>
+                                            <button class="nav-link" id="nav-user-tab" data-type="user"
+                                                data-bs-toggle="tab" data-bs-target="#nav-user" type="button" role="tab"
+                                                aria-controls="nav-user" aria-selected="false">User</button>
+                                        </div>
+                                    </nav>
+                                </div>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade active show" id="nav-song" role="tabpanel"
+                                        aria-labelledby="nav-song-tab">
+                                        <div class="bm__box">
+                                            <div class="bm__box__sec" id="song-boxes-container">
+                                                <% for(let i=0; i < Math.min(10, defaultTracks.length); i++) { %>
+                                                    <div class="box">
+                                                        <div class="box__img album_image">
+                                                            <img class="w-100" src="<%= defaultTracks[i].image %>"
+                                                                alt="img">
+                                                        </div>
+                                                        <div
+                                                            class="box__content d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <h4>
+                                                                    <%= defaultTracks[i].name %>
+                                                                </h4>
+                                                                <p>
+                                                                    <%= defaultTracks[i].artists[0].name %>
+                                                                </p>
+                                                            </div>
+                                                            <div class="inner__icons">
+                                                                <a href="#!" data-toggle="modal"
+                                                                    data-target="#exampleModal" class="like-btn-song"
+                                                                    data-track-id="<%= defaultTracks[i].id %>">
+                                                                    <img src="image/icon/heart-blank.png" alt="icon">
+                                                                </a>
+                                                                <a href="#!" class="inner__three"> <img
+                                                                        src="image/icon/threedot.svg" alt="icon"> </a>
+                                                                <button class="icon__set d-none">Add to
+                                                                    Playlist</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-album" role="tabpanel"
+                                        aria-labelledby="nav-album-tab">
+                                        <div class="bm__box">
+                                            <div class="bm__box__sec" id="album-boxes-container">
+
+                                                <% for(let i=0; i < Math.min(10, defaultAlbums.length); i++) { %>
+                                                    <div class="box">
+                                                        <div class="box__img album_image">
+                                                            <img class="w-100" src="<%= defaultAlbums[i].image %>"
+                                                                alt="img">
+                                                        </div>
+                                                        <div
+                                                            class="box__content d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <h4>
+                                                                    <%= defaultAlbums[i].name %>
+                                                                </h4>
+                                                                <p>
+                                                                    <%= defaultAlbums[i].type %>
+                                                                </p>
+                                                            </div>
+                                                            <!-- <a href="#!" data-toggle="modal"
+                                                                data-target="#exampleModal"> <img
+                                                                    src="image/icon/heart-blank.png" alt="icon"> </a> -->
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade artist__tab" id="nav-artist" role="tabpanel"
+                                        aria-labelledby="nav-artist-tab">
+                                        <div class="bm__box">
+                                            <div class="bm__box__sec" id="artist-boxes-container">
+                                                <% for(let i=0; i < Math.min(10, defaultArtists.length); i++) { %>
+                                                    <div class="box art_box">
+                                                        <div class="box__img artist_image">
+                                                            <img src="<%= defaultArtists[i].image %>" alt="img">
+                                                        </div>
+                                                        <div
+                                                            class="box__content d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <h4>
+                                                                    <%= defaultArtists[i].name %>
+                                                                </h4>
+                                                                <p>Artist</p>
+                                                            </div>
+                                                            <a href="#!" class="like-btn-artist" data-artist-id="<%= defaultArtists[i].id %>">
+                                                                <% if (user && user.likedArtists &&
+                                                                    user.likedArtists.includes(defaultArtists[i].id)) { %>
+                                                                    <img src="image/icon/heart-filled.png" alt="icon">
+                                                                    <% } else { %>
+                                                                        <img src="image/icon/heart-blank.png"
+                                                                            alt="icon">
+                                                                        <% } %>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-playlist" role="tabpanel"
+                                        aria-labelledby="nav-playlist-tab">
+                                        <div class="bm__box">
+                                            <div class="bm__box__sec" id="playlist-boxes-container">
+                                                <% for(let i=0; i < Math.min(10, defaultPlaylists.length); i++) { %>
+                                                    <div class="box"
+                                                        onclick="location.href='/playlist/<%= defaultPlaylists[i]._id %>'">
+                                                        <div class="box__img album_image">
+                                                            <img class="w-100" src="image/section/playlistDefault.png"
+                                                                alt="img">
+                                                        </div>
+                                                        <div
+                                                            class="box__content d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <h4>
+                                                                    <%= defaultPlaylists[i].title %>
+                                                                </h4>
+                                                                <p>Playlist</p>
+                                                            </div>
+                                                            <a href="#!" data-toggle="modal"
+                                                                data-target="#exampleModal"> <img
+                                                                    src="image/icon/heart-blank.png" alt="icon"> </a>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-user" role="tabpanel"
+                                        aria-labelledby="nav-user-tab">
+                                        <div class="bm__box">
+                                            <div class="bm__box__sec" id="user-boxes-container">
+                                                <% defaultUsers.forEach(user=> { %>
+                                                    <div class="box" onclick="location.href='/users/<%= user._id %>'">
+                                                        <div class="box__img album_image">
+                                                            <% if (typeof user.image !== 'undefined' && user.image) { %>
+                                                                <img class="w-100" src="data:image/jpeg;base64,<%= user.image.toString('base64') %>">
+                                                            <% } else { %>
+                                                                <img class="w-100" src="/image/section/userDefault.png">
+                                                            <% } %>
+                                                        </div>
+                                                        <div
+                                                            class="box__content d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <h4>
+                                                                    <%= user.name %>
+                                                                        <%= user.surname %>
+                                                                </h4>
+                                                                <p>
+                                                                    User
+                                                                </p>
+                                                            </div>
+                                                            <!-- <a href="#!" data-toggle="modal"
+                                                                data-target="#exampleModal">
+                                                                <img src="image/icon/heart-blank.png" alt="icon">
+                                                            </a> -->
+                                                        </div>
+                                                    </div>
+                                                    <% }) %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <%- include('partials/addSongToPlaylistModal.ejs') %>
+
+            <!-- page section end here -->
+
+            <!-- bottom nav start here -->
+            <div class="bottom__nav">
+                <div class="navi w-100">
+                    <ul class="w-100 p-0 justify-content-between flex-row align-items-center"
+                        style="background: unset;">
+                        <li><a class="d-flex flex-column" href="home"><img src="image/icon/homeUnactive.png" alt="icon">
+                                Home</a>
+                        </li>
+                        <li><a class="d-flex flex-column bottom_nav_active" id="libBtntwo" href="search"><img
+                                    src="image/icon/searchActive.png" alt="icon">
+                                Search</a></li>
+                        <li><a class="d-flex flex-column" id="libBtn"><img src="image/icon/libraryUnactive.png"
+                                    alt="icon">
+                                Library</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- bottom nav end here -->
+
+            <%- include('partials/alert.ejs') %>
+
+            <%- include('partials/createPlaylistModal.ejs') %>
+
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+                <script src="js/script.js"></script>
+                <script src="js/playlist.js"></script> <!-- TODO questo cosa ci fa qui? -->
+
+                <script type="module" src="js/search/main.js"></script>
+
+                <script src="js/library.js"></script>
+                <script type="module" src="js/createPlaylistModal.js"></script>
+
+    </body>
+
+    </html>

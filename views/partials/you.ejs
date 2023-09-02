@@ -1,0 +1,22 @@
+<div class="sideProfile d-flex justify-content-between align-items-center w-100">
+    <a href="/profile" class="profile">
+        <div>
+            <% if (typeof user.image !== 'undefined' && user.image) { %>
+                <img src="data:image/jpeg;base64,<%= user.image.toString('base64') %>" id="profile-pic-you">
+            <% } else { %>
+                <img src="/image/section/profile.png" id="profile-pic-you">
+            <% } %>
+        </div>
+        <div>
+            <h5>
+                <%= user.name + " " + user.surname %>
+            </h5>
+            <p>
+                <%= user.email %>
+            </p>
+        </div>
+    </a>
+    <a href="/profile/settings">
+        <img src="/image/icon/setting.png" alt="img">
+    </a>
+</div>

@@ -1,0 +1,46 @@
+<div class="modal fade box__modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">Select Playlist</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"><img src="/image/icon/close.svg" alt="icon"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex flex-column" style="gap: 15px;">
+                            <div class="playlist__sel d-flex align-items-center"
+                                    data-playlist-id="likedSongs">
+                                    <img src="/image/section/likedSongs.png" alt="img">
+                                    <div class="sel__cont">
+                                        <h4>
+                                            Liked Songs
+                                        </h4>
+                                        <p>
+                                            <%= user.likedSongs.length %> Songs
+                                        </p>
+                                    </div>
+                                </div>
+                            <% for(let i=0; i < userPlaylists.length; i++) { %>
+                                <div class="playlist__sel d-flex align-items-center"
+                                    data-playlist-id="<%= userPlaylists[i]._id.toString() %>">
+                                    <img src="/image/section/playlist1.png" alt="img">
+                                    <div class="sel__cont">
+                                        <h4>
+                                            <%= userPlaylists[i].title %>
+                                        </h4>
+                                        <p>
+                                            <%= userPlaylists[i].songs.length %> Songs
+                                        </p>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="done__btn" type="button" class="" data-dismiss="modal" id="donePlaylistBtn">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>

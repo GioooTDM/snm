@@ -1,0 +1,24 @@
+<% if (likedArtists && likedArtists.length) { %>
+    <div class="sidebar__playlist sidebar__history">
+        <h4>Your Artists</h4>
+        <div class="d-flex flex-column" style="gap: 19px;">
+
+            <% likedArtists.forEach(artist=> { %>
+                <div class="playlist">
+                    <a href="#!">
+                        <img height="55px" width="55px" src="<%= artist.image %>"
+                            alt="<%= artist.name %>">
+
+                        <div class="paly__content">
+                            <h5>
+                                <%= artist.name %>
+                            </h5>
+                            <p>Artist</p>
+                        </div>
+                    </a>
+                </div>
+                <% }) %>
+
+        </div>
+    </div>
+    <% } %>

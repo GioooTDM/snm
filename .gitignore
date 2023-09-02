@@ -1,0 +1,9 @@
+# modules
+**/node_modules
+
+#enviroment variables
+.env
+
+#misc
+npm-debug.log
+PERSONAL.md

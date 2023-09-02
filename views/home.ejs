@@ -1,0 +1,136 @@
+<%- include('partials/head.ejs') %>
+
+    <body>
+
+        <!-- page section start here -->
+        <section class="page__section">
+            <div class="page__inner d-flex">
+                <div class="sidebar d-flex flex-column" id="sidebar">
+                    <div class="navi w-100">
+                        <ul class="w-100">
+                            <li><a href="" class="bottom_nav_active"><img src="image/icon/homeActive.png" alt="icon">
+                                    Home</a></li>
+                            <li><a href="search"><img src="image/icon/searchUnactive.png" alt="icon">Search</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <%- include('partials/you.ejs') %>
+                    <%- include('partials/yourPlaylists.ejs') %>
+                    <%- include('partials/yourArtists.ejs') %>
+                </div>
+                <div class="bm__boxes w-100">
+                    <div class="bm__box">
+                        <h2 class="text-white font-weight-bold d-none morning_text "
+                            style="font-size: 30px; margin-bottom: 40px;">Good Morning</h2>
+                        <h3>Best Songs of the Month</h3>
+                        <div class="bm__box__sec">
+                            <% for(let i=0; i < Math.min(10, tracks.length); i++) { %>
+                                <div class="box">
+                                    <div class="box__img cv">
+                                        <img class="w-100" src="<%= tracks[i].image %>" alt="img">
+                                    </div>
+                                    <div class="box__content d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h4>
+                                                <%= tracks[i].name %>
+                                            </h4>
+                                            <p>
+                                                <%= tracks[i].artists[0].name %>
+                                            </p>
+                                        </div>
+                                        <a href="#!" data-toggle="modal" data-target="#exampleModal"
+                                            class="like-btn-song" data-track-id="<%= tracks[i].id %>">
+                                            <img src="image/icon/heart-blank.png" alt="icon">
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                        <h3>Best Artists of the Month</h3>
+                        <div class="bm__box__sec">
+                            <% for(let i=0; i < Math.min(10, artists.length); i++) { %>
+                                <div class="box">
+                                    <div class="box__img cv artist_image">
+                                        <img class="w-100" src="<%= artists[i].image %>" alt="img">
+                                    </div>
+                                    <div class="box__content d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h4>
+                                                <%= artists[i].name %>
+                                            </h4>
+                                            <p>Artist</p>
+                                        </div>
+                                        <a href="#!" class="like-btn-artist" data-artist-id="<%= artists[i].id %>">
+                                            <% if (user && user.likedArtists &&
+                                                user.likedArtists.includes(artists[i].id)) { %>
+                                                <img src="image/icon/heart-filled.png" alt="icon">
+                                                <% } else { %>
+                                                    <img src="image/icon/heart-blank.png" alt="icon">
+                                                    <% } %>
+                                        </a>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                        <h3>New Releases</h3>
+                        <div class="bm__box__sec">
+                            <% for(let i=0; i < Math.min(10, newReleases.length); i++) { %>
+                                <div class="box">
+                                    <div class="box__img cv">
+                                        <img class="w-100" src="<%= newReleases[i].image %>" alt="img">
+                                    </div>
+                                    <div class="box__content d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h4>
+                                                <%= newReleases[i].name %>
+                                            </h4>
+                                            <p style="text-transform: capitalize;">
+                                                <%= newReleases[i].type %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <%- include('partials/addSongToPlaylistModal.ejs') %>
+        <%- include('partials/createPlaylistModal.ejs') %>
+
+        <!-- page section end here -->
+
+        <!-- bottom nav start here -->
+        <div class="bottom__nav">
+            <div class="navi w-100">
+                <ul class="w-100 p-0 justify-content-between flex-row align-items-center" style="background: unset;">
+                    <li><a class="d-flex flex-column bottom_nav_active" id="libBtntwo" href="home"><img
+                                src="image/icon/homeActive.png" alt="icon"> Home</a>
+                    </li>
+                    <li><a class="d-flex flex-column" href="search"><img src="image/icon/searchUnactive.png" alt="icon">
+                            Search</a></li>
+                    <li><a class="d-flex flex-column" id="libBtn" href="#!"><img src="image/icon/libraryUnactive.png"
+                                alt="icon"> Library</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- bottom nav end here -->
+
+        
+        <%- include('partials/alert.ejs') %>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script src="js/script.js"></script>
+        <script src="js/library.js"></script>
+        <script type="module" src="js/home.js"></script>
+        <script type="module" src="js/createPlaylistModal.js"></script>
+    </body>
+
+    </html>

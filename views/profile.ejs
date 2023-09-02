@@ -1,0 +1,155 @@
+<%- include('partials/head.ejs') %>
+
+<body>
+
+    <!-- page section start here -->
+    <section class="page__section">
+        <div class="page__inner d-flex">
+            <div class="sidebar d-flex flex-column" id="sidebar">
+                <div class="navi w-100">
+                    <ul class="w-100">
+                        <li><a href="/home"><img src="/image/icon/home3.png" alt="icon"> Home</a></li>
+                        <li><a href="/search"><img src="/image/icon/searchUnactive.png" alt="icon">Search</a></li>
+                    </ul>
+                </div>
+                <%- include('partials/you.ejs') %>
+                <%- include('partials/yourPlaylists.ejs') %>
+                <%- include('partials/yourArtists.ejs') %>
+            </div>
+            <div class="user__sec w-100">
+                <div class="pg__info d-flex justify-content-between align-items-center">
+                    <h3 class="font-weight-bold text-white d-flex align-items-center gap-4">
+                        <img class="d-none right__arrow " src="/image/icon/leftArrow.svg" alt=""> 
+                        <% if (isMe) { %>
+                            Your Profile
+                        <% } else { %>
+                            Profile
+                        <% } %>
+                    </h3>
+                    <% if (isMe) { %>
+                        <a href="/logout">Log Out</a>
+                    <% } %>
+                </div>
+
+                <div class="user__profile d-flex align-items-center">
+                    <div class="user__img" id="user-img">
+
+                        <% if (typeof profileUser.image !== 'undefined' && profileUser.image) { %>
+                            <img src="data:image/jpeg;base64,<%= profileUser.image.toString('base64') %>" id="profile-pic">
+                        <% } else { %>
+                            <img src="/image/section/profile.png" id="profile-pic">
+                        <% } %>
+
+                        <% if (isMe) { %>
+                        <input type="file" id="file-input" class="d-none">
+                        <% } %>
+
+                    </div>
+                    <div class="user__content">
+                        <p>
+                            <% if (isMe) { %>
+                                Profile
+                            <% } else { %>
+                                <%= profileUser.email %>
+                            <% } %>
+                        </p>
+                        <h1 class="prof__h1">
+                            <%= profileUser.name + " " + profileUser.surname %> 
+                            <% if (isMe) { %>
+                                <a href="profile/settings"><img class="prof__chg" src="/image/icon/edit.svg" alt="icon"></a>
+                            <% } %>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="user__playlist">
+                    <h3>
+                        <% if (isMe) { %>
+                            Your Playlists
+                        <% } else { %>
+                            <%= profileUser.name + "'s Public Playlists" %>
+                        <% } %>
+                    </h3>
+                    <div style="overflow: auto; white-space: nowrap; margin-bottom: 41px;">
+                        <div class="user__playBox">
+                            <% for(let i=0; i < profilePlaylists.length; i++) { %>
+                                <div class="play__box" onclick="window.location.href='/playlist/<%= profilePlaylists[i]._id %>'">
+                                    <div>
+                                        <img src="/image/section/playlist1.png" alt="img">
+                                    </div>
+                                    <div class="play__content">
+                                        <h5>
+                                            <%= profilePlaylists[i].title %>
+                                        </h5>
+                                        <p><%= profilePlaylists[i].songs.length %> Songs</p>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="user__playlist">
+                    <h3>
+                        <% if (isMe) { %>
+                            Playlists You’ve Liked
+                        <% } else { %>
+                            <%= profileUser.name + "'s Liked Playlists" %>
+                        <% } %>
+                    </h3>
+                    <div style="overflow: auto; white-space: nowrap; margin-bottom: 41px;">
+                        <div class="user__playBox">
+                            <% for(let i=0; i < likedPlaylists.length; i++) { %>
+                                <div class="play__box" onclick="window.location.href='/playlist/<%= likedPlaylists[i]._id %>'">
+                                    <div>
+                                        <img src="/image/section/playlist1.png" alt="img">
+                                    </div>
+                                    <div class="play__content">
+                                        <h5>
+                                            <%= likedPlaylists[i].title %>
+                                        </h5>
+                                        <p><%= likedPlaylists[i].songs.length %> Songs</p>
+                                    </div>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- page section end here -->
+
+    <!-- bottom nav start here -->
+    <div class="bottom__nav">
+        <div class="navi w-100">
+            <ul class="w-100 p-0 justify-content-between flex-row align-items-center" style="background: unset;">
+                <li><a class="d-flex flex-column" href="/home"><img src="/image/icon/homeUnactive.png" alt="icon">
+                        Home</a></li>
+                <li><a class="d-flex flex-column" href="/search"><img src="/image/icon/searchUnactive.png" alt="icon">
+                        Search</a></li>
+                <li><a class="d-flex flex-column" id="libBtn" href="#!"><img src="/image/icon/libraryUnactive.png"
+                            alt="icon"> Library</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- bottom nav end here -->
+
+    <%- include('partials/createPlaylistModal.ejs') %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/script.js"></script>
+    <script src="js/library.js"></script>
+    <script type="module" src="js/createPlaylistModal.js"></script>
+
+    <% if (isMe) { %>
+    <script src="/js/personal_profile/main.js"></script>
+    <% } %>
+</body>
+
+</html>
