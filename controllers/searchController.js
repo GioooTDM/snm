@@ -49,7 +49,7 @@ exports.searchPlaylist = async (req, res) => {
 exports.searchUser = async (req, res) => {
     try {
         const query = req.query.query;
-        const data = await dbService.findUsersByNameSurname(query);
+        const data = await dbService.findUsersByNameSurnameMail(query);
 
         if (!data) {
             return res.status(404).send("User not found");

@@ -28,7 +28,7 @@
     - utils
     - views
         - partials
-    - server.js
+    - *server.js*
 4. [Scelte Implementative e Parti rilevanti di codice](#scelte-implementative-e-parti-rilevanti-di-codice)
     - [Autenticazione e Autorizzazione (Cookies & JWT)](#autenticazione-e-autorizzazione-cookies--jwt)
     - [Middleware](#middleware) 

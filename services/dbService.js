@@ -25,7 +25,7 @@ async function findPublicPlaylists(query) {
 
 // TODO: migliorare
 // non deve esporre dati sensibili tipo password
-async function findUsersByNameSurname(query) {
+async function findUsersByNameSurnameMail(query) {
 
     const db = client.db('test');
     const collection = db.collection('users');
@@ -37,7 +37,8 @@ async function findUsersByNameSurname(query) {
     const wordQueries = words.map(word => ({
         $or: [
             { name: new RegExp(word, 'i') },
-            { surname: new RegExp(word, 'i') }
+            { surname: new RegExp(word, 'i') },
+            { email: new RegExp(word, 'i') }
         ]
     }));
 
@@ -51,5 +52,5 @@ async function findUsersByNameSurname(query) {
 
 module.exports = {
     findPublicPlaylists,
-    findUsersByNameSurname
+    findUsersByNameSurnameMail
 };
