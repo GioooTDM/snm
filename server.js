@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const { connectToDatabase } = require('./database/connection');
@@ -43,8 +44,10 @@ app.get('/newrelases', async (req, res) => {
     res.send(newRelases);
 });
 
+// Read the port from the .env file, or default to 3000
+const port = process.env.PORT || 3000;
 
 // Avvia l'app
-app.listen(3000, () => {
-    console.log("App in ascolto sulla porta 3000");
+app.listen(port, () => {
+    console.log(`App in ascolto sulla porta ${port}`);
 });
