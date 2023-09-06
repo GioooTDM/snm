@@ -106,14 +106,7 @@ exports.playlist = async (req, res) => {
     }
 };
 
-// TODO
-exports.singleArtist = (req, res) => {
-    res.render('singleArtist');
-};
-
-// TODO: finire
-// probabilmente mi serve una variabile booleana chiamata isMe
-// fare il render della view 'profile'
+// TODO: migliorare nomi variabili.
 exports.user = async (req, res) => {
     try {
         const userId = req.params.userId;
@@ -147,4 +140,9 @@ exports.user = async (req, res) => {
     } catch (error) {
         res.status(500).send("Errore interno del server");
     }
+};
+
+// TODO
+exports.singleArtist = (req, res) => {
+    res.render('singleArtist');
 };

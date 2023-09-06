@@ -28,22 +28,6 @@ app.use('/api/search', searchRoutes);
 
 app.use('/', pagesRoutes);
 
-// TEST
-app.get('/toptracks', async (req, res) => {
-    const topTracks = await spotifyHomeService.getGlobalTopTracks();
-    res.send(topTracks);
-});
-
-app.get('/topartists', async (req, res) => {
-    const topTracks = await spotifyHomeService.getGlobalTopArtists();
-    res.send(topTracks);
-});
-
-app.get('/newrelases', async (req, res) => {
-    const newRelases = await spotifyHomeService.getNewReleases();
-    res.send(newRelases);
-});
-
 // Read the port from the .env file, or default to 3000
 const port = process.env.PORT || 3000;
 

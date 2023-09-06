@@ -39,7 +39,11 @@ modalButton.addEventListener('click', function () {
             data = { oldPassword: oldPasswordInput.value, newPassword: newPasswordInput.value, confirmPassword: confirmPasswordInput.value };
             break;
         case 'deleteAccount':
-            // TODO: fare qualcosa di diverso per confermare l'eliminazione
+            const deleteConfirmation = defaultInput.value;
+            if (deleteConfirmation.toLowerCase() !== 'delete') {
+                alert('Per confermare l\'eliminazione, inserisci la parola "delete" nel campo di input.');
+                return;
+            }
             break;
     }
 

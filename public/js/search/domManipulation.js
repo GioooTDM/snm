@@ -57,7 +57,7 @@ function createBoxContent(item) {
             break;
         case 'album':
             title = item.name;
-            subtitle = item.type;
+            subtitle = capitalize(item.type);
             break;
         case 'artist':
             title = item.name;
@@ -82,7 +82,7 @@ function createBoxContent(item) {
     const contentWrapper = createElement('div', {}, [h4, p]);
 
     // Se il tipo di ricerca corrente è "album" o "user", non crea le icone
-    const icons = (currentSearchType !== 'album' && currentSearchType !== 'user') ? createIconsDiv(item.id) : null;
+    const icons = (currentSearchType !== 'album' && currentSearchType !== 'playlist' && currentSearchType !== 'user') ? createIconsDiv(item.id) : null;
 
     const content = createElement('div', { className: 'box__content d-flex justify-content-between align-items-center' }, [contentWrapper, icons]);
 
@@ -126,15 +126,16 @@ function createIconsDiv(itemId) {
 
     let iconsArray = [heartLink];
 
-    if (currentSearchType === 'track') {
-        const threeDotIcon = createElement('img', { src: 'image/icon/threedot.svg', alt: 'icon' });
-        const threeDotLink = createElement('a', { href: "#!", className: 'inner__three' }, [threeDotIcon]);
+    // NON CANCELLARE - Crea l'icona con i tre puntini se sto cercando una track
+    // if (currentSearchType === 'track') {
+    //     const threeDotIcon = createElement('img', { src: 'image/icon/threedot.svg', alt: 'icon' });
+    //     const threeDotLink = createElement('a', { href: "#!", className: 'inner__three' }, [threeDotIcon]);
 
-        const button = createElement('button', { className: 'icon__set d-none' }, ['Add to Playlist']);
+    //     const button = createElement('button', { className: 'icon__set d-none' }, ['Add to Playlist']);
 
-        iconsArray.push(threeDotLink);
-        iconsArray.push(button);
-    }
+    //     iconsArray.push(threeDotLink);
+    //     iconsArray.push(button);
+    // }
 
     return createElement('div', { className: 'inner__icons' }, iconsArray);
 }
@@ -158,4 +159,8 @@ function createElement(tag, attributes, children) {
         }
     });
     return element;
+}
+
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }

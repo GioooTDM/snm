@@ -67,7 +67,7 @@ exports.uploadImage = async (req, res) => {
 
         // Se la dimensione è ancora maggiore di 1MB dopo aver ridotto la qualità al minimo, restituisci un errore
         if (buffer.length > 1 * 1024 * 1024) {
-            return res.status(400).json({ message: 'La dimensione dell\'immagine supera il limite di 2 MB anche dopo la compressione' });
+            return res.status(400).json({ message: 'La dimensione dell\'immagine supera il limite di 1 MB anche dopo la compressione' });
         }
 
         const usersCollection = client.db("test").collection("users");
