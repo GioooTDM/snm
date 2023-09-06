@@ -28,7 +28,6 @@ app.use('/api/search', searchRoutes);
 
 app.use('/', pagesRoutes);
 
-// Read the port from the .env file, or default to 3000
 const port = process.env.PORT || 3000;
 
 // Avvia l'app

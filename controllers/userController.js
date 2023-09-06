@@ -154,7 +154,6 @@ exports.changePassword = async (req, res) => {
 exports.updateGenres = async (req, res) => {
     const { genres } = req.body;
 
-    // Validate genres array
     if (!Array.isArray(genres)) {
         return res.status(400).json({ message: 'Genres should be an array.' });
     }

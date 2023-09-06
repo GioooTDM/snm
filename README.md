@@ -100,7 +100,7 @@ PORT=80
 
 - Controlli effettuati: 
     - Nessun campo deve essere vuoto
-    - L'indirizzo Email deve essere univoco
+    - L'indirizzo Email deve essere valido ed univoco
     - Le password devono corrispondere
 
 ![Screenshot](./docs/login.png)
@@ -462,3 +462,5 @@ Questo meccanismo assicura un utilizzo efficiente dello spazio di archiviazione 
 ## Lavori Futuri
 
 - Implementare la ricerca all'interno delle playlist
+- Migliorare i redirect
+- Migliorare pagina "404: Not Found!"

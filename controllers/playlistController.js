@@ -16,11 +16,11 @@ exports.createPlaylist = async (req, res) => {
         const newPlaylist = {
             title,
             description: description || "",  // Descrizione opzionale
-            songs: [],  // Inizializza con un array vuoto di canzoni
+            songs: [],
+            tags: [], 
             createdBy: new ObjectId(req.userId),  // Assumendo che 'req.userId' contenga l'ID dell'utente autenticato
             createdAt: new Date(),
-            isPublished: false,
-            tags: []
+            isPublished: false
         };
 
         // Inserisci la nuova playlist nel database
